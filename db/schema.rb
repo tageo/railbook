@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150907052338) do
+ActiveRecord::Schema.define(version: 20150907102338) do
 
   create_table "authors", force: :cascade do |t|
     t.integer  "user_id"
@@ -49,6 +49,14 @@ ActiveRecord::Schema.define(version: 20150907052338) do
     t.boolean  "deleted"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "members", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.integer  "lock_version", default: 0
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "memos", force: :cascade do |t|
