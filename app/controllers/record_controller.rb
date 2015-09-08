@@ -89,5 +89,21 @@ class RecordController < ApplicationController
 		render 'books/index'
 	end
 
+	def belongs
+		@review = Review.find(3)
+	end
+
+	def hasmany
+		@book = Book.find_by(isbn: '978-4-7741-5878-5')
+	end
+
+	def has_and_belongs
+		@book = Book.find_by(isbn: '978-4-7741-5611-8')
+	end
+
+	def has_many_through
+		@user = User.find_by(username: 'isatou')
+	end
+
 
 end
