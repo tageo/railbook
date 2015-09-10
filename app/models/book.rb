@@ -3,6 +3,7 @@ class Book < ActiveRecord::Base
   has_many :users, through: :reviews
   has_and_belongs_to_many :authors
   has_many :memos, as: :memoable
+  after_destroy BookCallbacks.new
 
   validates :isbn,
     presence: true,
@@ -43,6 +44,14 @@ class Book < ActiveRecord::Base
 
   validates :publish,
     inclusion:{ in: ['技術評論社', '翔泳社', '秀和システム', '日経BP社', 'ソシム'] }
+
+
+
+  private
+
+    def history_book
+      logger.info('deleted:' + self.inspect)
+    end
 
 
 end
