@@ -121,5 +121,25 @@ class RecordController < ApplicationController
 		end
 	end
 
+	def assoc_join
+		@books = Book.joins(:reviews, :authors).
+		order('books.title, reviews.updated_at').
+		select('books.*, reviews.body, authors.name')
+	end
+
+	def assoc_join2
+		@books = Book.joins(reviews: :user).
+		select('books.*,reviews.body,users.username')
+	end
+
+	def assoc_join3
+		@books = Book.joins('LEFT JOIN reviews ON reviews.book_id = books.id').
+		select('books.*,reviews.body')
+	end
+
+
+	def assoc_includes
+		@books = Book.includes(:authors).all
+	end
 
 end
